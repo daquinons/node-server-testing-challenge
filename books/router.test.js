@@ -44,3 +44,13 @@ it('should add a new book when post /', async () => {
   expect(response.body).toEqual(newBook);
   Books.db.data = seeds;
 });
+
+it('should delete a book of id 1 when delete /1', async () => {
+  const previousLength = Books.find().length;
+  const response = await request(app).delete('/1');
+  expect(response.status).toEqual(200);
+  expect(response.body).toEqual(1);
+  const newLength = Books.find().length;
+  expect(newLength).toEqual(previousLength - 1);
+  Books.db.data = seeds;
+});
