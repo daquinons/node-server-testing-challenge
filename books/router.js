@@ -13,4 +13,10 @@ router.get('/:id', (req, res) => {
   res.json(book);
 });
 
+router.post('/', (req, res) => {
+  const { id, title, author } = req.body;
+  const newBook = Books.insert({ id, title, author });
+  res.status(201).json(newBook);
+});
+
 module.exports = router;

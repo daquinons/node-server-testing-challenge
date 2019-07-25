@@ -1,11 +1,6 @@
 const db = require('../data/db')('books');
-const seeds = [
-  { id: 1, title: '1984', author: 'George Orwell' },
-  { id: 2, title: 'Maps of Meaning', author: 'Jordan B. Peterson' },
-  { id: 3, title: 'Beyond Good and Evil', author: 'Friedrich Nietzsche' }
-];
 
-db.data = seeds;
+exports.db = db;
 
 exports.find = () => {
   return db.data;
@@ -14,4 +9,10 @@ exports.find = () => {
 exports.findById = id => {
   const item = db.data.find(item => item.id === Number(id));
   return item;
+};
+
+exports.insert = newBook => {
+  db.data.push(newBook);
+  const book = this.findById(newBook.id);
+  return book;
 };

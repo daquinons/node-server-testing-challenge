@@ -1,6 +1,14 @@
 const express = require('express');
 const router = require('./router');
 const request = require('supertest');
+const Books = require('./model')
+const seeds = [
+  { id: 1, title: '1984', author: 'George Orwell' },
+  { id: 2, title: 'Maps of Meaning', author: 'Jordan B. Peterson' },
+  { id: 3, title: 'Beyond Good and Evil', author: 'Friedrich Nietzsche' }
+];
+
+Books.db.data = seeds;
 
 const app = express();
 app.use(express.json());
@@ -34,4 +42,5 @@ it('should add a new book when post /', async () => {
   const response = await request(app).post('/').send(newBook);
   expect(response.status).toEqual(201);
   expect(response.body).toEqual(newBook);
+  Books.db.data = seeds;
 });
