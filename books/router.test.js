@@ -13,7 +13,7 @@ it('should return 200 when get /', async () => {
 });
 
 it('should return a list of books when get /', async () => {
-  const response = await request(app).get('/')
+  const response = await request(app).get('/');
   const books = response.body;
-  expect(books).toBe(typeof Array);
+  expect(Array.isArray(books)).toBe(true);
 });
