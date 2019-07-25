@@ -63,6 +63,5 @@ it('should update a book of id 1 when put /1', async () => {
   const response = await request(app).put('/1').send(updatedBook);
   expect(response.status).toEqual(200);
   const book = Books.findById(1);
-  console.log(Books.db);
   expect(book.title).toEqual(updatedBook.title);
 });
