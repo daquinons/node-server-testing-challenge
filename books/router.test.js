@@ -17,3 +17,9 @@ it('should return a list of books when get /', async () => {
   const books = response.body;
   expect(Array.isArray(books)).toBe(true);
 });
+
+it('should return 200 when get /1', async () => {
+  const expectedStatusCode = 200;
+  const response = await request(app).get('/1');
+  expect(response.status).toEqual(expectedStatusCode);
+});
