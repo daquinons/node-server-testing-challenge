@@ -23,3 +23,8 @@ it('should return 200 when get /1', async () => {
   const response = await request(app).get('/1');
   expect(response.status).toEqual(expectedStatusCode);
 });
+
+it('should return a book with id 1 when get /1', async () => {
+  const response = await request(app).get('/1');
+  expect(response.body.id).toEqual(1);
+});

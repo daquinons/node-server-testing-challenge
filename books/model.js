@@ -10,3 +10,8 @@ db.data = seeds;
 exports.find = () => {
   return db.data;
 };
+
+exports.findById = id => {
+  const item = db.data.find(item => item.id === Number(id));
+  return item;
+};

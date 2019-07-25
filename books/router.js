@@ -7,4 +7,10 @@ router.get('/', (req, res) => {
   res.json(books);
 });
 
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+  const book = Books.findById(id);
+  res.json(book);
+});
+
 module.exports = router;
