@@ -15,7 +15,6 @@ beforeEach(() => {
   ];
 
   Books.db.data = seeds;
-  console.log(Books.db.data);
 });
 
 it('should return 200 when get /', async () => {
