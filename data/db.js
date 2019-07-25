@@ -1,3 +1,3 @@
-module.exports = (table) => {
+module.exports = table => {
   return { table, data: [] };
 };
