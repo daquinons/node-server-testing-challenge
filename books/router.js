@@ -19,4 +19,10 @@ router.post('/', (req, res) => {
   res.status(201).json(newBook);
 });
 
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  const deletedId = Books.delete(id);
+  res.status(200).json(deletedId);
+});
+
 module.exports = router;

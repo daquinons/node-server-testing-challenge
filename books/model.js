@@ -16,3 +16,15 @@ exports.insert = newBook => {
   const book = this.findById(newBook.id);
   return book;
 };
+
+exports.delete = id => {
+  let toReturn;
+  db.data.forEach((element, index) => {
+    if (element.id === Number(id)) {
+      toReturn = Number(id);
+      db.data.splice(index, 1);
+    }
+  });
+
+  return toReturn;
+}
