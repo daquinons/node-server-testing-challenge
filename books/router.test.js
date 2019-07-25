@@ -2,23 +2,21 @@ const express = require('express');
 const router = require('./router');
 const request = require('supertest');
 const Books = require('./model');
-const seeds = [
-  { id: 1, title: '1984', author: 'George Orwell' },
-  { id: 2, title: 'Maps of Meaning', author: 'Jordan B. Peterson' },
-  { id: 3, title: 'Beyond Good and Evil', author: 'Friedrich Nietzsche' }
-];
-
-beforeEach(() => {
-  Books.db.data = seeds;
-});
-
-afterEach(() => {
-  Books.db.data = seeds;
-});
 
 const app = express();
 app.use(express.json());
 app.use('/', router);
+
+beforeEach(() => {
+  const seeds = [
+    { id: 1, title: '1984', author: 'George Orwell' },
+    { id: 2, title: 'Maps of Meaning', author: 'Jordan B. Peterson' },
+    { id: 3, title: 'Beyond Good and Evil', author: 'Friedrich Nietzsche' }
+  ];
+
+  Books.db.data = seeds;
+  console.log(Books.db.data);
+});
 
 it('should return 200 when get /', async () => {
   const expectedStatusCode = 200;
@@ -66,5 +64,6 @@ it('should update a book of id 1 when put /1', async () => {
   const response = await request(app).put('/1').send(updatedBook);
   expect(response.status).toEqual(200);
   const book = Books.findById(1);
+  console.log(Books.db);
   expect(book.title).toEqual(updatedBook.title);
 });

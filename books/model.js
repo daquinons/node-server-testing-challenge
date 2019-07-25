@@ -26,5 +26,17 @@ exports.delete = id => {
     }
   });
 
+  exports.update = (id, book) => {
+    let toReturn;
+    db.data.forEach((element, index) => {
+      if (element.id === Number(id)) {
+        toReturn = book;
+        db.data[index] = book;
+      }
+    });
+
+    return toReturn;
+  };
+
   return toReturn;
 }

@@ -25,4 +25,11 @@ router.delete('/:id', (req, res) => {
   res.status(200).json(deletedId);
 });
 
+router.put('/:id', (req, res) => {
+  const id = req.params.id;
+  const book = req.body;
+  const updatedBook = Books.update(id, book);
+  res.json(updatedBook);
+});
+
 module.exports = router;
