@@ -28,3 +28,10 @@ it('should return a book with id 1 when get /1', async () => {
   const response = await request(app).get('/1');
   expect(response.body.id).toEqual(1);
 });
+
+it('should add a new book when post /', async () => {
+  const newBook = {id: 99, title: 'Test Book', author: 'Jest'};
+  const response = await request(app).post('/').send(newBook);
+  expect(response.status).toEqual(201);
+  expect(response.body).toEqual(newBook);
+});
